@@ -1,0 +1,300 @@
+input:focus {
+    border: midnightblue;
+}
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+
+    background: linear-gradient(to bottom, #00aafffb,rgba(0, 128, 0, 0.571));
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.typewriter {
+    font-size: 2rem;
+    color: white;
+    font-weight:bold;
+    position: relative;
+    bottom: 20px;
+
+}
+
+.typewriter,
+form {
+    min-height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+form input,
+form button {
+    padding: 0.5rem;
+    font-size: 2rem;
+    border: none;
+    background: white;
+
+}
+
+form button {
+    color: midnightblue;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+form button:hover {
+    color: white;
+    background: linear-gradient(to bottom,blueviolet,green);
+}
+
+.todo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+.form_container {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.todo_list {
+    min-width: 30%;
+    position: relative;
+    list-style: none;
+    margin-right: 25px;
+}
+
+.all_todo {
+    position: relative;
+    margin-top: 20px;
+    background-color: blueviolet;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+
+body::-webkit-scrollbar {
+width: 0px;
+}
+
+.todo {
+    margin: 0.5rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.todo li {
+ flex:1;
+}
+
+.delete_btn,
+.complete_btn {
+
+    background: yellow;
+    color: black;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.complete_btn {
+    background: green;
+}
+
+.todo_item {
+    padding: 0rem .5rem;
+    word-wrap: break-word;
+    position: relative;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-trash,
+.fa-check {
+    pointer-events: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.fall {
+    transform: translateX(19rem) rotateX(70deg);
+    opacity: 0.5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: blueviolet;
+    width: 34rem;
+    height: 12rem;
+    border-radius: 15px;
+}
+
+
+.late {
+    background-color: red;
+    /* color: white;*/
+    animation: blink-animation 3s infinite;
+}
+
+
+
+
+@keyframes blink-animation {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
+
+.edit-btn {
+
+    color: black;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: green !important;
+
+}
+
+.new-task-late {
+    background-color: lightcoral;
+    padding: .7rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    border-radius: 5px;
+}
+
+.new-task-future {
+    background-color: lightgreen;
+    padding: .7rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    border-radius: 5px;
+}
+
+.late-banner {
+    color:white ;
+    font-size: 1.3rem;
+    font-weight: bold;
+    position: relative;
+    margin-left: 30px;
+}
+
+
+
+@media only screen and (max-width:1440px) {
+    .typewriter{
+    font-size: 1rem;
+   
+    }
+
+    .all_todo{
+        width: 30rem;
+        min-height: 5px;
+    }
+    form{
+        width: 75%;
+    }
+    input{
+       width: 70%;
+       height: 3rem;
+    }
+
+*{
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.todo_container{
+    width: 100%;
+    height: auto;
+}
+
+.todo_list {
+    list-style: none;
+    margin :0;
+    padding: 0;
+    font-size: 5px;
+
+    
+
+}
+
+form div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+form div button{
+    position: relative;
+    margin-top: 10px;
+    width: 70%;
+    height: 3rem;
+
+}
+form div input{
+    font-size: 25px;
+}
+
+.new-task-late,
+.new-task-future
+{
+    font-size: 15px;
+    width: 70%;
+}
+.late-banner {
+    color:white ;
+    font-size: 10px;
+    font-weight: bold;
+    position: relative;
+    margin-left: 0px;
+}
+.todo{
+    height: 5rem;
+}
+}
