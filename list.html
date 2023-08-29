@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TO DO LIST</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+                integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="list.css" />
+        <link rel="stylesheet" href="clock.css" />
+
+         <script src="https://cdn.jsdelivr.net/npm/typewriter-effect@2.18.0/dist/core.js"></script>
+</head>
+
+<body>
+        <div class="typewriter">
+                
+        </div>
+        <div class="clock">
+                <div class="hand hour" data-hour-hand></div>
+                <div class="hand minute" data-minutes-hand></div>
+                <div class="hand second" data-seconds-hand></div>
+                <div class="number number1">1</div>
+                <div class="number number2">2</div>
+                <div class="number number3">3</div>
+                <div class="number number4">4</div>
+                <div class="number number5">5</div>
+                <div class="number number6">6</div>
+                <div class="number number7">7</div>
+                <div class="number number8">8</div>
+                <div class="number number9">9</div>
+                <div class="number number10">10</div>
+                <div class="number number11">11</div>
+                <div class="number number12">12</div>
+       
+               </div>
+        <div class="container">
+                  
+        
+              
+                <div class="form_container">
+                        <form action="" name="">
+                                <div>
+                                        <input type="text" class="todo_input" placeholder="Nom de la tâche" />
+                                        <button class="todo_button" type="submit" value=""><i
+                                                        class="fa-solid fa-plus"></i></button>
+                                </div>
+
+                                <input type="datetime-local" id="task-datetime" />
+                        </form>
+
+                </div>
+
+                <div class="all_todo">
+                        <div class="todo_container">
+                                <ul class="todo_list"></ul>
+                        </div>
+                </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"
+                integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="app.js"></script>
+        <script  src = "clock.js"></script>
+</body>
+
+
+<script>
+
+        const typewriter = new Typewriter('.typewriter', {
+                strings: [
+                        "Bienvenue dans votre liste de tâches! Programmez vos tâches avec style.",
+                        "Ne laissez rien vous échapper! Productivité et simplicité au rendez-vous!"
+                ],
+                autoStart: true, // Démarrez automatiquement l'animation
+                loop: true, // Répétez l'animation en boucle
+                cursor: '|', // Utilisez un curseur personnalisé
+                delay: 50, // Délai entre chaque caractère
+        });
+        
+</script>
+
+</html>
