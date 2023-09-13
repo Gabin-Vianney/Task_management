@@ -1,300 +1,479 @@
 input:focus {
-    border: midnightblue;
+  border: midnightblue;
 }
 * {
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
-
-    background: linear-gradient(to bottom, #00aafffb,rgba(0, 128, 0, 0.571));
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+}
+input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+  font-size: 30px;
+  background-color: white;
+  border-radius: 4px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
-.typewriter {
-    font-size: 2rem;
-    color: white;
-    font-weight:bold;
-    position: relative;
-    bottom: 20px;
 
+.controls,
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.controls {
+  padding: 18px 25px;
+  border-bottom: 1px solid #ccc;
+}
+.filters span {
+  margin: 0 8px;
+  font-size: 20px;
+  color:  white;
+  font-weight:bold;
+  cursor: pointer;
+
+}
+.filters span:hover{
+  color: #3c87ff;
+   transition: all 1s ease-in-out;
+}
+.filters span.active{
+  color: #3c87ff;
+
+}
+.filters span:first-child {
+  margin-left: 0;
+}
+
+.controls .clear-btn {
+  border: none;
+  opacity: 0.6;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 7px 13px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  background: linear-gradient(135deg, #1798fb 0%, #2d5cfe 100%);
+}
+
+.filters{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+.My_task_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 57rem;
+  width: 55%;
+}
+.all_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 50px;
+}
+.myImgId {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.img_container {
+  width: 40%;
+  height: 50rem;
+  object-fit: contain;
+}
+.typewriter {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  bottom: 20px;
 }
 
 .typewriter,
 form {
-    min-height: 15vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  min-height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-form input,
-form button {
-    padding: 0.5rem;
-    font-size: 2rem;
-    border: none;
-    background: white;
-
+form input {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: black;
+  color: white;
+  font-weight: bold;
+  width: 90%;
+  height: 4rem;
+  border-radius: 5px;
 }
 
 form button {
-    color: midnightblue;
-    cursor: pointer;
-    transition: all 0.3s;
+  cursor: pointer;
+  font-size: 1.5rem;
+  border: none;
+  transition: all 0.3s;
+  background-color: green;
+  height: 3rem;
+  width: 50%;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  margin-right: 5%;
 }
 
 form button:hover {
-    color: white;
-    background: linear-gradient(to bottom,blueviolet,green);
+  color: white;
+  background: linear-gradient(to bottom, blueviolet, green);
 }
 
 .todo_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
-}
-
-
-.form_container {
-    display: flex;
-    height: auto;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .todo_list {
-    min-width: 30%;
-    position: relative;
-    list-style: none;
-    margin-right: 25px;
+  width: 100%;
+  height: 30rem;
+  position: relative;
+  list-style: none;
+  
+  overflow-y: scroll;
+}
+.todo_list::-webkit-scrollbar {
+  width: 0px;
 }
 
 .all_todo {
-    position: relative;
-    margin-top: 20px;
-    background-color: blueviolet;
-    width: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
+  position: relative;
+  background-image: url(./images/whatsaap_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 40px;
 }
 
-
 body::-webkit-scrollbar {
-width: 0px;
+  width: 0px;
 }
 
 .todo {
-    margin: 0.5rem;
-    background: white;
-    color: black;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease-in;
-    padding: 15px;
-    border-radius: 10px;
+  margin: 0.5rem;
+  background: black;
+  width: 97%;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease-in;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 .todo li {
- flex:1;
+  flex: 1;
 }
 
-.delete_btn,
-.complete_btn {
-
-    background: yellow;
-    color: black;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 1rem;
+.delete_btn {
+  background: yellow;
+  color: black;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
 }
 
-.complete_btn {
-    background: green;
+.edit-btn span,
+.delete_btn span {
+  margin-left: 7px;
+  font-size: 1rem;
 }
 
+.button_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+}
 .todo_item {
-    padding: 0rem .5rem;
-    word-wrap: break-word;
-    position: relative;
-    margin: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 0rem 0.5rem;
+  word-wrap: break-word;
+  position: relative;
+  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .fa-trash,
 .fa-check {
-    pointer-events: none;
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: 0.5;
+  pointer-events: none;
 }
 
 .fall {
-    transform: translateX(19rem) rotateX(70deg);
-    opacity: 0.5;
+  transform: translateX(19rem) rotateX(70deg);
+  opacity: 0.5;
 }
 
+.container {
+  display: flex;
+  height: 90%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: blueviolet;
-    width: 34rem;
-    height: 12rem;
-    border-radius: 15px;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-image: url(./images/whatsaap_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 
+  width: 35rem;
+  height: 20rem;
+  border-radius: 15px;
+}
 
 .late {
-    background-color: red;
-    /* color: white;*/
-    animation: blink-animation 3s infinite;
+  background-color: red;
+  font-size: 1rem;
+  /* color: white;*/
+  animation: blink-animation 3s infinite;
 }
-
-
-
-
+.img_container{
+  background-color: black;
+  animation:blink-animation 4s infinite; ;
+}
 @keyframes blink-animation {
+  0%,
+  100% {
+    opacity: 1;
+  }
 
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.2;
-    }
+  50% {
+    opacity: 0.2;
+  }
 }
 
 .edit-btn {
-
-    color: black;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 1rem;
-    background-color: green !important;
-
+  color: black;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: green !important;
+  border-radius: 5px;
 }
 
 .new-task-late {
-    background-color: lightcoral;
-    padding: .7rem;
-    font-weight: bold;
-    font-size: 1.5rem;
-    word-wrap: break-word;
-    border-radius: 5px;
+  background-color: lightcoral;
+  padding: 0.7rem;
+  font-weight: bold;
+  font-size: 1rem;
+  word-wrap: break-word;
+  border-radius: 5px;
+}
+.complete_btn {
+  width: 2rem;
+  height: 2rem;
+}
+.new-task-future {
+  background-color: lightslategray;
+  padding: 0.7rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  word-wrap: break-word;
+  border-radius: 5px;
 }
 
-.new-task-future {
-    background-color: lightgreen;
-    padding: .7rem;
-    font-weight: bold;
-    font-size: 1.5rem;
-    word-wrap: break-word;
-    border-radius: 5px;
-}
+
+.todo_item button{
+  width: 5rem;
+  height: 2rem;
+  font-size: .7rem;
+  background-color: green;
+  border: none;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+ }
+  .todo_item input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+   font-size: 15px;
+   background-color: white;
+   border-radius: 4px;
+   margin-left: 10px;
+   cursor: pointer;
+ }
 
 .late-banner {
-    color:white ;
-    font-size: 1.3rem;
-    font-weight: bold;
-    position: relative;
-    margin-left: 30px;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  position: relative;
+  margin-left: 30px;
 }
 
-
-
-@media only screen and (max-width:1440px) {
-    .typewriter{
+@media only screen and (max-width: 1440px) {
+  .typewriter {
     font-size: 1rem;
-   
-    }
+  }
 
-    .all_todo{
-        width: 30rem;
-        min-height: 5px;
-    }
-    form{
-        width: 75%;
-    }
-    input{
-       width: 70%;
-       height: 3rem;
-    }
+  .all_todo {
+    width: 30rem;
+    min-height: 5px;
+  }
+  form {
+    width: 25rem;
+    height: 15rem;
+  }
+  input {
+    width: 70%;
+    height: 3rem;
+  }
 
-*{
-    
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-.todo_container{
+  }
+  .todo_container {
     width: 100%;
     height: auto;
-}
+  }
 
-.todo_list {
+  .todo_list {
     list-style: none;
-    margin :0;
+    margin: 0;
     padding: 0;
     font-size: 5px;
+  }
 
-    
-
-}
-
-form div{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-form div button{
+  form div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  form div button {
     position: relative;
     margin-top: 10px;
     width: 70%;
     height: 3rem;
+  }
+  form div input {
+    font-size: 10px;
+  }
 
-}
-form div input{
-    font-size: 25px;
-}
-
-.new-task-late,
-.new-task-future
-{
-    font-size: 15px;
-    width: 70%;
-}
-.late-banner {
-    color:white ;
+  .new-task-late,
+  .new-task-future {
+    font-size: 10px;
+    width: 20%;
+  }
+  .late-banner {
+    color: white;
     font-size: 10px;
     font-weight: bold;
     position: relative;
     margin-left: 0px;
-}
-.todo{
+  }
+  .todo {
     height: 5rem;
+  }
+
+
+.button_container { 
+  width: 45%;
+}
+.edit-btn,
+.delete_btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  height: 2rem;
+  width: 5rem;
+}
+.edit-btn span,
+.delete_btn span{
+  font-size: .6rem;
+  font-weight: bold;
+
+}
+.all_container{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.img_container {
+  width: 75%;
+  height: 40rem;
+  object-fit: contain;
+}
+.todo_item input{
+ width: 4rem; 
+ height: 2rem;
+ flex: 2;
+ font-size: 10px;
+margin-right: 4px;
+}
+
+.todo_item button{
+ width: 3rem;
+ height: 2rem;
+ font-size: .4rem;
+ background-color: green;
+ border: none;
+ font-weight: bold;
+ color: white;
+ cursor: pointer;
+ border-radius: 5px;
+}
+ .todo_item input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+  font-size: 10px;
+  background-color: white;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.todo_item{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
 }
 }

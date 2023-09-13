@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO DO LIST</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="list.css" />
+    <link rel="stylesheet" href="clock.css" />
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/typewriter-effect@2.18.0/dist/core.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+
+  <body>
+      <!--<header>
+        <div class="typewriter">
+
+      </header>
+    -->      
+        </div>
+
+        <nav>
+          <div class="navbar">
+            <i class='bx bx-menu'></i>
+            <div class="logo"><a href="#">Gabin-Vianney@</a></div>
+            <div class="nav-links">
+              <div class="sidebar-logo">
+                <span class="logo-name">Gabin Gabin-Vianney@</span>
+                <i class='bx bx-x' ></i>
+              </div>
+              <ul class="links">
+                <li><a href="#">HOME</a></li>
+                <li>
+                  <a href="#">HTML & CSS</a>
+                  <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+                  <ul class="htmlCss-sub-menu sub-menu">
+                    <li><a href="Projects//ProjetCosmetique/html/home/home.html">Produits cosmétique</a></li>
+                    <li><a href="Projects/CV_javascript/cv.html">CV en JS</a></li>
+                    <li><a href="Projects/menu_responsive.js/menu.html">Page d'accueil</a></li>
+                    <li><a href="Projects/Clock_With_Javascript/clock.html">Clock en Js</a></li>
+                    <li class="more">
+                      <span><a href="#">Plus</a>
+                      <i class='bx bxs-chevron-right arrow more-arrow'></i>
+                    </span>
+                      <ul class="more-sub-menu sub-menu">
+                        <li><a href="Projects/MUSIC_PLAYER_JS/music.html">Music Playing </a></li>
+                        <li><a href="Projects/Loading_Using_HTML_CSS/loader.html">Pre-loader</a></li>
+                        <li><a href="Projects/PROJET_SITE_ERESULTATS.BJ/HTML/Test/test.html">EResulats Design</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="https://github.com/Gabin-Vianney">Flutter Project</a></li>
+
+                <li>
+                  <a href="#">JAVASCRIPT</a>
+                  <i class='bx bxs-chevron-down js-arrow arrow '></i>
+                  <ul class="js-sub-menu sub-menu">
+                    <li><a href="#">Dynamic Clock</a></li>
+                    <li><a href="Projects/form-validation-html-javascript/Form Validaton in HTML/index.html">Form Validation</a></li>
+                    <li><a href="Projects/drop-down-navigation-bar-html-css/index.html">DropDown Menu</a></li>
+                    <li><a href="#">Complete Website</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#">CONTACT US</a></li>
+              </ul>
+            </div>
+            <div class="search-box">
+              <i class='bx bx-search'></i>
+              <div class="input-box">
+                <input type="text" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+
+
+
+
+
+    <div class="all_container">
+      <div class="My_task_container">
+        <!-- <div class="clock">
+                                <div class="hand hour" data-hour-hand></div>
+                                <div class="hand minute" data-minutes-hand></div>
+                                <div class="hand second" data-seconds-hand></div>
+                                <div class="number number1">1</div>
+                                <div class="number number2">2</div>
+                                <div class="number number3">3</div>
+                                <div class="number number4">4</div>
+                                <div class="number number5">5</div>
+                                <div class="number number6">6</div>
+                                <div class="number number7">7</div>
+                                <div class="number number8">8</div>
+                                <div class="number number9">9</div>
+                                <div class="number number10">10</div>
+                                <div class="number number11">11</div>
+                                <div class="number number12">12</div>
+
+                        </div>-->
+        <div class="container">
+          <form action="" name="">
+            <input
+              type="text"
+              class="todo_input"
+              placeholder="Nom de la tâche"
+            />
+            <span>Date et Heure</span>
+            <input type="datetime-local" id="task-datetime" />
+
+            <button class="todo_button" type="submit" value="">Ajouter</button>
+          </form>
+          <div class="controls">
+            <div class="filters">
+              <span class="active" id="all">All</span>
+              <span id="pending">Pending</span>
+              <span id="completed">Completed</span>
+            </div>
+            <button class="clear-btn">Clear All</button>
+          </div>
+
+          <div class="all_todo">
+            <div class="todo_container">
+              <ul class="todo_list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="img_container">
+        <img class="myImgId" />
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"
+      integrity="sha512-Mf/xUqfWvDIr+1B6zfnIDIiG7XHzyP/guXUWgV6PgaQoIFeXkJQR5XWh9fqAiCiRCpemabt3naV4jhDWVnuYDQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="app.js"></script>
+    <script src="clock.js"></script>
+    <script src="script.js"></script>
+
+  </body>
+
+  <script>
+    const typewriter = new Typewriter(".typewriter", {
+      strings: [
+        "Bienvenue dans votre liste de tâches! Programmez vos tâches avec style.",
+        "Ne laissez rien vous échapper! Productivité et simplicité au rendez-vous!",
+      ],
+      autoStart: true, // Démarrez automatiquement l'animation
+      loop: true, // Répétez l'animation en boucle
+      cursor: "|", // Utilisez un curseur personnalisé
+      delay: 50, // Délai entre chaque caractère
+    });
+  </script>
+</html>

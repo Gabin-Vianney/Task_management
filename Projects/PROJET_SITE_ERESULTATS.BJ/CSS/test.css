@@ -1,0 +1,675 @@
+.navigation-link{
+  overflow:scroll;
+   width: 100%;
+   height: 12vh;
+   background-color: rgb(37,37,74);
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.lien-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  position: relative;
+  width:40vh;
+  height: 80px;
+}
+.green{
+
+  height: 4px;
+  background-color: green;
+  width: 8.5vh;
+
+}
+
+.yellow{
+
+  height: 4px;
+  background-color: yellow;
+  width: 8.5vh;
+}
+.red{
+
+  height: 4px;
+  background-color: red;
+  width: 8.5vh;
+}
+.color{
+  width: 40vh ;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.details{
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+}
+ li{
+    list-style-type: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  select{
+    color:white;
+    background-color : rgb(37,37,74);
+    border: none;
+    text-align: end;
+    font-size: 18px ;
+  }
+  p{
+    color: white;
+
+  }
+  .header-lien{
+   font-size: 40px;
+   font-family: Arial, Helvetica, sans-serif;
+  }
+  option{
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    height: 100px;
+    background-color: none;
+    color: teal;
+  }
+  .sous-menu{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    width: 20vh;
+    text-align: center;
+  }
+
+  .sous-menu:hover{
+ color: yellowgreen
+  }
+  .logo{
+    width: 60px;
+
+  }
+  .logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1{
+    text-transform: uppercase;
+    font-size: 50px;
+  }
+
+  .image-container{
+    width: 100%;
+    height: 70vh;
+    background-image: url("../images/eres0.6b045dcd.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  *{
+    margin: 0px;
+    padding: 0px;
+  }
+  h1{
+    font-family: Arial, Helvetica, sans-serif;
+    size: 30px;
+    margin: 25px 0px ;
+    color: white;
+  }
+  .image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .para-container{
+    position: relative;
+    top: 25vh;
+    margin:  25px 0px;
+    align-self: flex-end;
+    padding: 50px;
+    width: 100%;
+    height: 10vh;
+    background-color: rgba(5, 5, 130, 0.335);
+  }
+.wish-container{
+  text-align: center;
+  position: relative;
+  top: 18vh;
+  margin:  25px 0px;
+  align-self: flex-end;
+  padding: 50px;
+  width: 100%;
+  height: 20px;
+  background-color:rgba(173, 216, 230, 0.962);
+
+  }
+  .wish-para{
+    font-family: Arial, Helvetica, sans-serif;
+font-size: 20px;
+  margin: 5px 0px ;
+  }
+  .voir{
+    position: relative;
+    left: -108vh;
+    padding: 10px;
+    text-align: center;
+    width: 5%;
+    height: 25px;
+    border-radius:40px;
+    border: 1px solid  rgba(37, 37, 74, 0.987);
+    color: rgba(37, 37, 74, 0.987) ;
+    font-size: 20px;
+  }
+  .details-exams{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+    height: 70vh;
+    margin:  0px auto;
+  }
+  .details-exams div:nth-child(5){
+ width: 20%;
+ height: 32%;
+
+  }
+  .details-exams div:nth-child(6){
+    width: 20%;
+    height: 32%;
+   
+     }
+  .details-exams div:nth-child(7){
+      width: 20%;
+      height: 32%;   
+}
+  .details-exams div:nth-child(8) {
+   position: relative;
+
+  } 
+  .exams-details{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+   margin: 25px;
+    width: 100%;
+    height: 20%;   
+    font-size: 30px;
+  }
+  .exams{
+      position: relative;
+    margin: 25px;
+    width: 40vh;
+    height: 20vh;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+   display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+  }
+  .exams-concours{
+    position: relative;
+    width: 8vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:darkslateblue;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .second{
+    position: relative;
+    width: 8vh;
+    margin: 20px;
+    height: 8vh;
+    background-color: brown;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .third{
+    position: relative;
+    width: 8vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:darkgoldenrod;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .fourth{
+    position: relative;
+    width: 8vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:green;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .fifth{
+    position: relative;
+    width: 8vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:lightblue;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+  }
+  .sixth{
+    position: relative;
+    width: 8vh;
+    margin: 20px;
+    height: 8vh;
+    background-color: red;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .seventh{
+    position: relative;
+    width: 8vh;
+    margin: 20px;
+    height: 8vh;
+    background-color: darkgoldenrod;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .eighth{
+    position: relative;
+    width: 8vh;
+   margin: 20px;
+    height: 8vh;
+    background-color: darkslateblue;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  .exams div:nth-child(2){
+    position: relative;
+     width: 20vh;
+     height: 5vh;
+    left: 5px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+.anothers{
+    position: relative;
+    display: flex;
+   flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+    margin: 10px;
+  }
+  .small-exam{
+    color: black;
+  }
+  .exam-information{
+    position: relative;
+    top: 10px;
+    color: rgba(0, 0, 0, 0.683);
+    font-style: italic;
+  }
+.online{
+  color: white;
+  text-align: center;
+}
+.sortie{
+  border-radius: 7px 0px  7px ;
+  position: relative;
+  align-self: flex-start;
+  width: 60%;
+  height: 20px;
+  background-color: lightblue;
+}
+.details-exams-span{
+
+  height: 1px;
+   margin-top: 4%;
+    background-color: lightblue;
+    width: 95%;
+   display: inline-block;
+}
+.more{
+  color: black;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border-radius: 40px;
+  background-color: white;
+  font-style: italic;
+  text-align: center;
+}
+.more-information{
+  position: relative;
+  width: 100%;
+  height: 18vh;
+  background-color: rgba(0, 0, 0, 0.648);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  top: 20px;
+}
+.container{
+  width: 25vh;
+  height: 10vh;
+  display: flex;
+  justify-content: space-evenly;
+}
+.mention{
+  color: rgba(255, 255, 255, 0.641);
+  width: 25vh;
+  height: 6vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.name{
+  width: 3vh;
+  height: 6vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.all{
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+
+
+  width: 20vh;
+  height: 10vh ;
+}
+.result{
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.depo{
+  width: 14px;
+  height: 14px;
+  border-radius: 20px;
+  border: 0.2px solid rgba(255, 255, 255, 0.696);
+  color: white;
+  text-align: center;
+  font-size: small;
+}
+.message{
+  position: relative;
+  left: -20px;
+  height: 35px;
+}
+.end{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  color: white;
+  right: 8vh;
+  top: -10px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.follow{
+  width: 10vh;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.sur{
+  color: white;
+  position: relative;
+  left: 70px;
+}
+.anothers .exams-concours {
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:cadetblue;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.anothers .second{
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:lightblue;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.anothers .third{
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:darkmagenta;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.anothers .fourth {
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:green;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.anothers .fifth {
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:yellowgreen;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.anothers .sixth{
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:brown;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.anothers .seventh {
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:cadetblue;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.anothers .eighth{
+  position: relative;
+    width: 12vh;
+    margin: 20px;
+    height: 8vh;
+    background-color:darkmagenta;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 80px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+.net img{
+   height: 40px;
+   width: 40px;
+   background-color: white;
+   border-radius: 20px;
+   margin: 5px;
+   cursor: pointer;
+   transition: 0.5s;
+
+}
+  .net img:hover{
+       background-color: white;
+       color: white;
+       transform: scale(2);
+
+  }
+
+
+  .fa-pen{
+    color: white;
+    font-size: 1.5rem;
+  }
+  .message img{
+    color: white;
+  }
+
+
+
+
+
+ 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MUSIC PLAYER JAVASCRIPT</title>
+        <link rel="stylesheet" href="music.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        >
+    </head>
+    <body>
+        <div class="player">
+            <div class="wrapper">
+                <div class="details">
+                    <div class="now_playing"></div>
+                    <div class="track_art"></div>
+                    <div class="track_name">Track Name</div>
+                    <div class="Track_artist">
+                        Track Artist
+                    </div>
+                </div>
+                <div class="slider_container">
+                    <div class="current_time">
+                        00:00
+                    </div>
+                    <input
+                        type="range"
+                        min="1"
+                        max="100"
+                        value="0"
+                        class="seek_slider"
+                        onchange="seekTo()"
+                    >
+                    <div class="total_duration">
+                        00:00
+                    </div>
+                </div>
+                <div class="slider_container">
+                    <i class="fa fa-volume-down"></i>
+                    <input
+                        type="range"
+                        min="1"
+                        max="100"
+                        value="99"
+                        class="volume_slider"
+                        onchange="setvolume()"
+                    >
+                    <i class="fa fa-volume-up"></i>
+                </div>
+                <div class="button">
+                    <div class="random_track" onclick="randomTrack()">
+                        <i class="fas fa-random fa-2x" title="random"></i>
+                    </div>
+                    <div class="prev_track" onclick="prevTrack()">
+                        <i class="fa fa-step-backward fa-2x" title="random"></i>
+                    </div>
+                    <div class="playpause_track" onclick="playpauseTrack()">
+                        <i class="fa fa-play-circle fa-5x"></i>
+                    </div>
+                    <div class="next_track" onclick="nextTrack()">
+                        <i class="fa fa-step-forward fa-2x"></i>
+                    </div>
+                    <div class="repeat_track" onclick="repeatTrack()">
+                        <i class="fa fa-repeat fa-2x" title="repeat"></i>
+                    </div>
+                </div>
+                <div id="wave">
+                    <span class="stroke"></span>
+                    <span class="stroke"></span>
+                    <span class="stroke"></span>
+                    <span class="stroke"></span>
+                    <span class="stroke"></span>
+                    <span class="stroke"></span>
+                    <span class="stroke"></span>
+                </div>
+            </div>
+        </div>
+        <script src="music.js"></script>
+    </body>
+</html>

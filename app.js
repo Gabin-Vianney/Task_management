@@ -1,37 +1,107 @@
 const todoList = document.querySelector(".todo_list");
-const completedTasks = [];
+const AllTodo = document.querySelector(".all_todo");
 const todoContainer = document.querySelector(".todo_container");
 let draggedTask = null;
+// Événement de début de glisser (dragstart)
 todoList.addEventListener("dragstart", (e) => {
-  draggedTask = e.target;
-  e.target.style.opacity = "0.5";
-});
-todoList.addEventListener("dragend", (e) => {
-  e.target.style.opacity = "1";
-});
-todoList.addEventListener("dragover", (e) => {
-  e.preventDefault();
-});
-todoList.addEventListener("dragenter", (e) => {
-  e.target.style.backgroundColor = "lightblue";
-});
-todoList.addEventListener("dragleave", (e) => {
-  e.target.style.backgroundColor = "";
-});
-todoList.addEventListener("drop", (e) => {
-  e.target.style.backgroundColor = "";
-
-  if (draggedTask && draggedTask.parentNode === todoList) {
-    todoList.insertBefore(draggedTask, e.target);
-    saveTasksToLocalStorage();
+  if (e.target.classList.contains("todo")) {
+    draggedTask = e.target;
+    e.target.style.opacity = "0.5";
   }
 });
 
-todoList.addEventListener("click", (e) => {
-  saveTasksToLocalStorage();
-  checkLateTasks();
+// Événement de fin de glisser (dragend)
+todoList.addEventListener("dragend", (e) => {
+  e.target.style.opacity = "1";
 });
 
+// Événement de survol pendant le glisser (dragover)
+todoList.addEventListener("dragover", (e) => {
+  e.preventDefault();
+});
+
+// Événement d'entrée pendant le glisser (dragenter)
+todoList.addEventListener("dragenter", (e) => {
+  e.target.style.backgroundColor = "";
+});
+
+// Événement de sortie pendant le glisser (dragleave)
+todoList.addEventListener("dragleave", (e) => {
+  e.target.style.backgroundColor = "";
+});
+
+// Événement de dépôt (drop)
+todoList.addEventListener("drop", (e) => {
+  e.target.style.backgroundColor = "";
+
+  if (draggedTask) {
+    todoList.insertBefore(draggedTask, e.target);
+  }
+});
+
+
+const clearAllButton = document.querySelector(".clear-btn");
+clearAllButton.addEventListener("click", () => {
+  const tasks = document.querySelectorAll(".todo");
+  tasks.forEach((task) => {
+    task.remove();
+  });
+
+  localStorage.removeItem("tasks");
+  localStorage.removeItem("completedTasks");
+});
+
+const showPendingTasksButton = document.querySelector("#pending");
+showPendingTasksButton.addEventListener("click", showPendingTasks);
+function showPendingTasks() {
+  const tasks = todoList.querySelectorAll(".todo");
+
+  tasks.forEach((task) => {
+    const checkbox = task.querySelector(".complete_btn");
+    if (!checkbox.checked) {
+      task.style.display = "flex"; // on  afficher la tâche si la case à cocher n'est pas cochée
+    } else {
+      task.style.display = "none"; // on masque la tâche sinon
+    }
+  });
+
+  saveTasksToLocalStorage();
+  checkLateTasks();
+}
+
+const showCompletedTasksButton = document.querySelector("#completed");
+showCompletedTasksButton.addEventListener("click", showCompletedTasks);
+function showCompletedTasks() {
+  const tasks = todoList.querySelectorAll(".todo");
+
+  tasks.forEach((task) => {
+    const checkbox = task.querySelector(".complete_btn");
+    if (checkbox.checked) {
+      task.style.display = "flex"; // on  affiche la tâche si la case à cocher n'est pas cochée
+    } else {
+      task.style.display = "none"; // on masquer la tâche sinon
+    }
+  });
+
+  saveTasksToLocalStorage();
+  checkLateTasks();
+}
+
+const showAllTasksButton = document.querySelector("#all");
+showAllTasksButton.addEventListener("click", showAllTasks);
+function showAllTasks() {
+  const tasks = todoList.querySelectorAll(".todo");
+
+  tasks.forEach((task) => {
+    const checkbox = task.querySelector(".complete_btn");
+    if (!checkbox.checked || checkbox.checked) {
+      task.style.display = "flex"; // on affiche la tâche si la case à cocher n'est pas cochée
+    }
+  });
+
+  saveTasksToLocalStorage();
+  checkLateTasks();
+}
 
 const taskNameInput = document.querySelector(".todo_input");
 const taskDatetimeInput = document.getElementById("task-datetime");
@@ -49,13 +119,6 @@ addTaskBtn.addEventListener("click", (e) => {
   }
 });
 
-
-
-
-
-
-
-
 // Fonction qui permet de donner le format de la date avec l'heure
 function formatDatetime(datetime) {
   const options = {
@@ -67,6 +130,7 @@ function formatDatetime(datetime) {
   };
   return new Date(datetime).toLocaleString("fr", options);
 }
+
 setInterval(checkLateTasks, 1000);
 
 // Fonction qui permet de signaler une tâche en retard
@@ -86,7 +150,7 @@ function checkLateTasks() {
         const newLateBanner = document.createElement("span");
         newLateBanner.classList.add("late-banner");
 
-        // Ajoutez la classe "late-time" pour le style et le ciblage
+        // Ajout de la classe "late-time" pour le style et le ciblage
         const lateTimeSpan = document.createElement("span");
         lateTimeSpan.classList.add("late-time");
 
@@ -95,93 +159,65 @@ function checkLateTasks() {
       }
     } else {
       task.classList.remove("late");
-
     }
   });
 }
 
-// Fonction qui permet d'éditer une tâche
 function editTask(taskItem) {
-  const taskText = taskItem.innerText.split(" - ")[0];
-  const taskDatetime = taskItem.getAttribute("data-datetime");
-  const editTaskForm = document.createElement("div");
-  editTaskForm.innerHTML = `
-    <input type="text" id="edit-task-name" value="${taskText}">
-    <input type="datetime-local" id="edit-task-datetime" value="${taskDatetime}">
-    <button id="save-edit-btn">Sauvegarder</button>
-    <button id="cancel-edit-btn">Annuler</button>
-  `;
-  taskItem.innerHTML = "";
-  taskItem.appendChild(editTaskForm);
-  const saveEditBtn = document.getElementById("save-edit-btn");
-  const cancelEditBtn = document.getElementById("cancel-edit-btn");
-  saveEditBtn.addEventListener("click", () => {
-    const editedTaskText = document.getElementById("edit-task-name").value;
-    const editedTaskDatetime = document.getElementById("edit-task-datetime").value;
-    const wasLate = taskItem.classList.contains("late");
-    taskItem.innerHTML = `${editedTaskText} - ${formatDatetime(editedTaskDatetime)}`;
-    taskItem.setAttribute("data-datetime", editedTaskDatetime);
-    if (wasLate && taskItem.classList.contains("completed")) {
-      const editedTaskDatetimeObj = new Date(editedTaskDatetime);
-      const currentDatetime = new Date();
-      const lateBanner = taskItem.querySelector(".late-banner");
-      if (editedTaskDatetimeObj > currentDatetime) {
-        taskItem.classList.remove("new-task-late");
-        // taskItem.classList.add("new-task-future");
-        //taskItem.style.backgroundColor = "lightgreen";
-        taskItem.classList.remove("late");
-        if (lateBanner) {
-          lateBanner.remove();
-        }
-      }
+  if (taskItem.tagName === "LI") {
+    const taskText = taskItem.innerText.split(" - ")[0];
+    const taskDatetime = taskItem.getAttribute("data-datetime");
 
-    }
+    const editTaskForm = document.createElement("div");
+    editTaskForm.classList.add("todo_item");
+    editTaskForm.innerHTML = `
+        <input type="text" id="edit-task-name" value="${taskText}">
+        <input type="datetime-local" id="edit-task-datetime" value="${taskDatetime}">
+        <button id="save-edit-btn">Enregistrer</button>
+    `;
 
-    saveTasksToLocalStorage();
-    checkLateTasks();
-  });
+    taskItem.innerHTML = "";
+    taskItem.appendChild(editTaskForm);
 
-  cancelEditBtn.addEventListener("click", () => {
-    taskItem.innerHTML = `${taskText} - ${formatDatetime(taskDatetime)}`;
-    taskItem.setAttribute("data-datetime", taskDatetime);
-    checkLateTasks();
-  });
-  saveTasksToLocalStorage();
-  checkLateTasks();
+    const saveEditBtn = document.getElementById("save-edit-btn");
+
+    saveEditBtn.addEventListener("click", () => {
+      const editedTaskText = document.getElementById("edit-task-name").value;
+      const editedTaskDatetime =
+        document.getElementById("edit-task-datetime").value;
+
+      taskItem.innerHTML = `${editedTaskText} - ${formatDatetime(
+        editedTaskDatetime
+      )}`;
+      taskItem.setAttribute("data-datetime", editedTaskDatetime);
+      saveTasksToLocalStorage();
+      checkLateTasks();
+    });
+  }
 }
-
 // Fonction pour créer le boutton edit pour modifier une tâche
 function createEditButton() {
   const editButton = document.createElement("button");
-  editButton.innerHTML = '<i class="fas fa-pen"></i>';
+  editButton.innerHTML = '<i class="fas fa-pen"></i> <span>Editer</span>';
   editButton.classList.add("edit-btn");
   return editButton;
 }
+
 // Au chargement de la page, on récupère les tâches depuis le localStorage
 document.addEventListener("DOMContentLoaded", () => {
   const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
   savedTasks.forEach((savedTask) => {
     createTask(savedTask.name, savedTask.datetime, savedTask.completed);
   });
-
-  displayCompletedTasks();
-
-
-  saveTasksToLocalStorage(); // Assurez-vous d'appeler la sauvegarde ici
 });
-// Fonction pour afficher les tâches marquées comme terminées
-function displayCompletedTasks() {
-  const savedCompletedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+document.addEventListener("DOMContentLoaded", () => {
+  // Chargement des tâches terminées depuis le stockage local
+  const savedCompletedTasks =
+    JSON.parse(localStorage.getItem("completedTasks")) || [];
   savedCompletedTasks.forEach((savedTask) => {
-    const task = document.querySelector(`.todo_item[data-datetime="${savedTask.datetime}"]`);
-    if (task && task.classList.contains("completed")) {
-      task.parentElement.classList.add("completed");
-    }
-     
+    createTask(savedTask.name, savedTask.datetime, savedTask.completed);
   });
-  saveTasksToLocalStorage();
-}
-
+});
 
 // Fonction pour créer une tâche
 function createTask(name, datetime, completed = false) {
@@ -189,29 +225,51 @@ function createTask(name, datetime, completed = false) {
   todoDiv.classList.add("todo");
   const newTodo = document.createElement("li");
   newTodo.classList.add("todo_item");
-  newTodo.innerHTML = `${name} - ${formatDatetime(datetime)}`; // Ajoutez les espaces avec &nbsp;
+  newTodo.innerHTML = `${name} - ${formatDatetime(datetime)}`;
   todoDiv.setAttribute("draggable", "true");
   newTodo.setAttribute("data-datetime", datetime);
-  if (completed) {
-    newTodo.classList.add("completed");
-    completedTasks.push(todoDiv); // Ajout de l'élément parent (todoDiv)  
-    completedTasks.push(newTodo); // Ajout de l'élément parent au tableau completedTasks
-    saveTasksToLocalStorage();
-  }
-  // Creation du button check
-  const completedButton = document.createElement("button");
-  completedButton.innerHTML = '<i class="fas fa-check"></i>';
-  completedButton.classList.add("complete_btn");
-  todoDiv.appendChild(completedButton);
 
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("button_container");
+
+  // Création du bouton de case à cocher
+  const completedButton = document.createElement("input");
+  completedButton.type = "checkbox";
+  completedButton.classList.add("complete_btn");
+
+  // Définition de  l'état de la case à cocher en fonction de la valeur "completed"
+  completedButton.checked = completed;
+
+  // Ajout d'un gestionnaire d'événements pour le changement d'état de la case à cocher
+  completedButton.addEventListener("change", function () {
+    if (completedButton.checked) {
+      // Application des styles appropriés si la tâche est cochée
+      newTodo.style.textDecoration = "line-through";
+      newTodo.style.opacity = "0.6";
+    } else {
+      // Suppression des styles si la tâche n'est pas cochée
+      newTodo.style.textDecoration = "none";
+      newTodo.style.opacity = "1";
+    }
+
+    // Enregistrement de  l'état de la case à cocher dans le stockage local
+    saveCheckboxState(datetime, completedButton.checked);
+    saveTasksToLocalStorage();
+    checkLateTasks();
+  });
+
+  // Restauration de  l'état de la case à cocher depuis le stockage local au chargement de la page
+  const checkboxState = loadCheckboxState(datetime);
+  completedButton.checked = checkboxState;
+  buttonContainer.appendChild(completedButton);
   // Creation du button delete
   const deleteButton = document.createElement("button");
-  deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+  deleteButton.innerHTML = '<i class="fas fa-trash"></i><span>Supprimer</span>';
   deleteButton.classList.add("delete_btn");
-  todoDiv.appendChild(deleteButton);
+  buttonContainer.appendChild(deleteButton);
   // Creation du button edit
-  const editButton = createEditButton(); // Utilisez votre fonction pour créer le bouton d'édition
-  todoDiv.appendChild(editButton);
+  const editButton = createEditButton();
+  buttonContainer.appendChild(editButton);
   editButton.addEventListener("click", () => editTask(newTodo));
   const currentDatetime = new Date();
   if (
@@ -228,15 +286,41 @@ function createTask(name, datetime, completed = false) {
     // Ajout  d'une classe pour le style différent des nouvelles tâches
     newTodo.classList.add("new-task-future");
   }
-  const allTodoDiv = document.querySelector(".all_todo");
-  allTodoDiv.style.display = "flex";
-  todoDiv.appendChild(newTodo); // Ajoutez newTodo à todoDiv
-  todoList.appendChild(todoDiv); // Ajoutez todoDiv à todoList
+  
+  // Ajout de todoDiv à la liste de tâches
+  todoDiv.appendChild(buttonContainer);
+  todoDiv.appendChild(newTodo);
+  todoList.appendChild(todoDiv);
 
   taskNameInput.value = "";
   saveTasksToLocalStorage();
   checkLateTasks();
 }
+
+
+
+// Fonction pour sauvegarder l'état de la case à cocher dans le stockage local
+function saveCheckboxState(datetime, isChecked) {
+  // Récupération des  états de la case à cocher existants dans le stockage local
+  const checkboxStates = JSON.parse(localStorage.getItem("checkboxStates")) || {};
+
+  // Enregistrement de  l'état actuel de la case à cocher
+  checkboxStates[datetime] = isChecked;
+
+  // Enregistrement des états de la case à cocher mis à jour dans le stockage local
+  localStorage.setItem("checkboxStates", JSON.stringify(checkboxStates));
+}
+
+
+// Fonction pour charger l'état de la case à cocher depuis le stockage local
+function loadCheckboxState(datetime) {
+  // Récupération des états de la case à cocher depuis le stockage local
+  const checkboxStates = JSON.parse(localStorage.getItem("checkboxStates")) || {};
+
+  // Récupération de  l'état de la case à cocher pour la tâche spécifique
+  return checkboxStates[datetime] || false;
+}
+
 // Fonction pour sauvegarder les taches dans le localStorage
 function saveTasksToLocalStorage() {
   const tasks = [];
@@ -244,72 +328,41 @@ function saveTasksToLocalStorage() {
     tasks.push({
       name: taskItem.innerText.split(" - ")[0],
       datetime: taskItem.getAttribute("data-datetime"),
-      completed: taskItem.classList.contains("completed"), // Ajouter le statut complet
-
+      completed: false,
     });
   });
+
+  // Sauvegarde des tâches cochées
+  const completedTasks = [];
+  document
+    .querySelectorAll(".todo_item[data-completed='true']")
+    .forEach((completedTaskItem) => {
+      completedTasks.push({
+        name: completedTaskItem.innerText.split(" - ")[0],
+        datetime: completedTaskItem.getAttribute("data-datetime"),
+        completed: true, // Marqué comme terminée
+      });
+    });
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
-
-  // Sauvegarder les tâches terminées séparément
-  document.querySelectorAll(".todo_list li").forEach((taskItem) => {
-    completedTasks.push({
-      name: taskItem.innerText.split(" - ")[0],
-      datetime: taskItem.getAttribute("data-datetime"),
-      completed: taskItem.classList.contains("completed"), // Ajouter le statut complet
-    });
-  });
-  localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
-
-
-
+  localStorage.setItem("completedTasks", JSON.stringify(completedTasks)); // Sauvegarde les tâches cochées
 }
-
-
-
 
 todoList.addEventListener("click", deleteCheck);
 function deleteCheck(e) {
   const item = e.target;
   if (item.classList.contains("delete_btn")) {
-    const todo = item.parentElement;
-    todo.classList.add('fall');
-    todo.addEventListener('transitionend', function () {
-      if (todo.classList.contains('completed')) {
-        const index = completedTasks.indexOf(todo.querySelector('.todo_item'));
-        if (index !== -1) {
-          completedTasks.splice(index, 1);
-          saveTasksToLocalStorage(); // Sauvegarder après la suppression de la tâche terminée
-        }
-      }
+    const todo = item.parentElement.parentElement;
+    todo.classList.add("fall");
+    todo.addEventListener("transitionend", function () {
       todo.remove();
-      AllTodoVisibility();
       saveTasksToLocalStorage();
     });
   } else if (item.classList.contains("complete_btn")) {
-    const todo = item.parentElement;
+    const todo = item.parentElement.parentElement;
     todo.classList.toggle("completed");
-    const todoItem = todo.querySelector('.todo_item');
-    if (todo.classList.contains("completed")) {
-      completedTasks.push(todoItem);
-    } else {
-      const index = completedTasks.indexOf(todoItem);
-      if (index !== -1) {
-        completedTasks.splice(index, 1);
-      }
-    }
     saveTasksToLocalStorage();
     checkLateTasks();
-  }
-}
-
-// Fonction qui permet d'afficher le conteneur de toutes les tâches créées
-function AllTodoVisibility() {
-  const tasks = document.querySelectorAll(".todo_list li");
-  // Sélection du conteneur all_todo
-  const allTodoDiv = document.querySelector(".all_todo");
-  if (tasks.length === 0) {
-    // S'il n'y a plus de tâches, on supprime le conteneur all_todo
-    allTodoDiv.style.display = 'none';
   }
 }
 
@@ -329,8 +382,12 @@ function updateLateTime() {
     const taskDatetime = new Date(taskDatetimeString);
     const timeDiffInMilliseconds = now - taskDatetime;
     const days = Math.floor(timeDiffInMilliseconds / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDiffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDiffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+    const hours = Math.floor(
+      (timeDiffInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (timeDiffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60)
+    );
     const seconds = Math.floor((timeDiffInMilliseconds % (1000 * 60)) / 1000);
     const lateTimeElement = lateBanner.querySelector(".late-time");
     if (lateTimeElement) {
@@ -340,3 +397,63 @@ function updateLateTime() {
 }
 updateLateTime();
 setInterval(updateLateTime, 1000);
+
+const Images = [
+  {
+    id: 1,
+    img: "./images/task1.jpg",
+  },
+  {
+    id: 2,
+    img: "./images/task2.jpg",
+  },
+  {
+    id: 3,
+    img: "./images/task3.jpg",
+  },
+  {
+    id: 4,
+    img: "./images/task4.jpg",
+  },
+  {
+    id: 5,
+    img: "./images/task5.jpg",
+  },
+  {
+    id: 6,
+    img: "./images/task6.jpg",
+  },
+  {
+    id: 7,
+    img: "./images/task7.jpg",
+  },
+];
+
+// Sélection de  l'élément img dans le DOM en utilisant son ID
+const imgElement = document.querySelector(".myImgId");
+let currentImageIndex = 0;
+
+// FONCTION POUR METTRE A JOUR L'IMAGE
+function updateImage() {
+  imgElement.src = Images[currentImageIndex].img;
+}
+
+ // FONCTION POUR PASSER A L'IMAGE SUIVANTE
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % Images.length;
+  updateImage();
+}
+
+// Définition de  l'intervalle pour changer automatiquement l'image toutes les 3 secondes.
+const interval = setInterval(nextImage, 4000);
+
+// Nettoyage de l'intervalle lorsqu'on n'en a plus besoin.
+function cleanupInterval() {
+  clearInterval(interval);
+}
+
+// Utilisation de l'équivalent de useEffect pour gérer le nettoyage
+window.addEventListener("beforeunload", cleanupInterval);
+
+// Initialisation de l'image affichée au démarrage.
+updateImage();
