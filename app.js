@@ -1,44 +1,48 @@
 const todoList = document.querySelector(".todo_list");
 const AllTodo = document.querySelector(".all_todo");
 const todoContainer = document.querySelector(".todo_container");
-let draggedTask = null;
-// Événement de début de glisser (dragstart)
-todoList.addEventListener("dragstart", (e) => {
-  if (e.target.classList.contains("todo")) {
-    draggedTask = e.target;
-    e.target.style.opacity = "0.5";
-  }
+const todos = document.querySelectorAll(".todo");
+let draggedTodo = null;
+
+todos.forEach((todo) => {
+  todo.addEventListener("dragstart", () => {
+    draggedTodo = todo;
+    setTimeout(() => {
+      todo.style.display = "none";
+    }, 0);
+  });
+
+  todo.addEventListener("dragend", () => {
+    setTimeout(() => {
+      todo.style.display = "";
+      draggedTodo = null;
+    }, 0);
+  });
 });
 
-// Événement de fin de glisser (dragend)
-todoList.addEventListener("dragend", (e) => {
-  e.target.style.opacity = "1";
+todos.forEach((todo) => {
+  todo.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
+
+  todo.addEventListener("dragenter", (e) => {
+    e.preventDefault();
+    todo.style.backgroundColor = "lightgray";
+  });
+
+  todo.addEventListener("dragleave", () => {
+    todo.style.backgroundColor = "";
+  });
+
+  todo.addEventListener("drop", () => {
+    todo.style.backgroundColor = "";
+    if (draggedTodo) {
+      // Insérer le div glissé avant le div cible
+      const container = todo.parentNode;
+      container.insertBefore(draggedTodo, todo);
+    }
+  });
 });
-
-// Événement de survol pendant le glisser (dragover)
-todoList.addEventListener("dragover", (e) => {
-  e.preventDefault();
-});
-
-// Événement d'entrée pendant le glisser (dragenter)
-todoList.addEventListener("dragenter", (e) => {
-  e.target.style.backgroundColor = "";
-});
-
-// Événement de sortie pendant le glisser (dragleave)
-todoList.addEventListener("dragleave", (e) => {
-  e.target.style.backgroundColor = "";
-});
-
-// Événement de dépôt (drop)
-todoList.addEventListener("drop", (e) => {
-  e.target.style.backgroundColor = "";
-
-  if (draggedTask) {
-    todoList.insertBefore(draggedTask, e.target);
-  }
-});
-
 
 const clearAllButton = document.querySelector(".clear-btn");
 clearAllButton.addEventListener("click", () => {
@@ -59,7 +63,7 @@ function showPendingTasks() {
   tasks.forEach((task) => {
     const checkbox = task.querySelector(".complete_btn");
     if (!checkbox.checked) {
-      task.style.display = "flex"; // on  afficher la tâche si la case à cocher n'est pas cochée
+      task.style.display = "flex"; // on  affiche la tâche si la case à cocher n'est pas cochée
     } else {
       task.style.display = "none"; // on masque la tâche sinon
     }
@@ -79,7 +83,7 @@ function showCompletedTasks() {
     if (checkbox.checked) {
       task.style.display = "flex"; // on  affiche la tâche si la case à cocher n'est pas cochée
     } else {
-      task.style.display = "none"; // on masquer la tâche sinon
+      task.style.display = "none"; // on masque la tâche sinon
     }
   });
 
@@ -270,7 +274,10 @@ function createTask(name, datetime, completed = false) {
   // Creation du button edit
   const editButton = createEditButton();
   buttonContainer.appendChild(editButton);
-  editButton.addEventListener("click", () => editTask(newTodo));
+  editButton.addEventListener("click", () => {
+    editTask(newTodo);
+
+  });
   const currentDatetime = new Date();
   if (
     new Date(datetime) < currentDatetime &&
@@ -286,7 +293,7 @@ function createTask(name, datetime, completed = false) {
     // Ajout  d'une classe pour le style différent des nouvelles tâches
     newTodo.classList.add("new-task-future");
   }
-  
+
   // Ajout de todoDiv à la liste de tâches
   todoDiv.appendChild(buttonContainer);
   todoDiv.appendChild(newTodo);
@@ -297,12 +304,11 @@ function createTask(name, datetime, completed = false) {
   checkLateTasks();
 }
 
-
-
 // Fonction pour sauvegarder l'état de la case à cocher dans le stockage local
 function saveCheckboxState(datetime, isChecked) {
   // Récupération des  états de la case à cocher existants dans le stockage local
-  const checkboxStates = JSON.parse(localStorage.getItem("checkboxStates")) || {};
+  const checkboxStates =
+    JSON.parse(localStorage.getItem("checkboxStates")) || {};
 
   // Enregistrement de  l'état actuel de la case à cocher
   checkboxStates[datetime] = isChecked;
@@ -311,11 +317,11 @@ function saveCheckboxState(datetime, isChecked) {
   localStorage.setItem("checkboxStates", JSON.stringify(checkboxStates));
 }
 
-
 // Fonction pour charger l'état de la case à cocher depuis le stockage local
 function loadCheckboxState(datetime) {
   // Récupération des états de la case à cocher depuis le stockage local
-  const checkboxStates = JSON.parse(localStorage.getItem("checkboxStates")) || {};
+  const checkboxStates =
+    JSON.parse(localStorage.getItem("checkboxStates")) || {};
 
   // Récupération de  l'état de la case à cocher pour la tâche spécifique
   return checkboxStates[datetime] || false;
@@ -391,7 +397,7 @@ function updateLateTime() {
     const seconds = Math.floor((timeDiffInMilliseconds % (1000 * 60)) / 1000);
     const lateTimeElement = lateBanner.querySelector(".late-time");
     if (lateTimeElement) {
-      lateTimeElement.textContent = ` Avec retard de ${days} jours:${hours} heures:${minutes}minutes:${seconds} seconds`;
+      lateTimeElement.textContent = ` Avec retard de ${days}jrs:${hours} h:${minutes}min:${seconds} s`;
     }
   });
 }
@@ -438,7 +444,7 @@ function updateImage() {
   imgElement.src = Images[currentImageIndex].img;
 }
 
- // FONCTION POUR PASSER A L'IMAGE SUIVANTE
+// FONCTION POUR PASSER A L'IMAGE SUIVANTE
 function nextImage() {
   currentImageIndex = (currentImageIndex + 1) % Images.length;
   updateImage();
