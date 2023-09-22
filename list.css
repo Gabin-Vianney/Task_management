@@ -96,15 +96,9 @@ li {
   height: 50rem;
   object-fit: contain;
 }
-.typewriter {
-  font-size: 2rem;
-  color: white;
-  font-weight: bold;
-  position: relative;
-  bottom: 20px;
-}
 
-.typewriter,
+
+
 form {
   min-height: 15vh;
   display: flex;
@@ -347,16 +341,14 @@ form {
 
 
 @media only screen and (max-width: 1440px) {
-  .typewriter {
-    font-size: 1rem;
-  }
+  
 
   .all_todo {
-    width: 30rem;
+    width: 20rem;
     min-height: 5px;
   }
   form {
-    width: 25rem;
+    width: 20rem;
     height: 15rem;
   }
   input {
@@ -399,12 +391,12 @@ form {
 
   .new-task-late,
   .new-task-future {
-    font-size: 10px;
-    width: 20%;
+    font-size: 6px;
+    width: 30%;
   }
   .late-banner {
     color: white;
-    font-size: 10px;
+    font-size: 6px;
     font-weight: bold;
     position: relative;
     margin-left: 0px;
@@ -415,7 +407,7 @@ form {
 
 
 .button_container { 
-  width: 45%;
+  width: 50%;
 }
 .edit-btn,
 .delete_btn{
@@ -423,13 +415,13 @@ form {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 5px;
   height: 2rem;
-  width: 5rem;
+  width: 3rem;
 }
 .edit-btn span,
 .delete_btn span{
-  font-size: .6rem;
+  font-size: .3rem;
   font-weight: bold;
 
 }
@@ -446,23 +438,24 @@ form {
   object-fit: contain;
 }
 .todo_item input{
- width: 4rem; 
- height: 2rem;
+ width: 3rem; 
+ height: 1rem;
  flex: 2;
- font-size: 10px;
-margin-right: 4px;
+ font-size: 6px;
+margin-right: 1px;
 }
 
 .todo_item button{
- width: 3rem;
- height: 2rem;
- font-size: .4rem;
+ width: 1.3rem;
+ height: 1rem;
+ font-size: 3px;
+
  background-color: green;
  border: none;
  font-weight: bold;
  color: white;
  cursor: pointer;
- border-radius: 5px;
+ border-radius: 2px;
 }
  .todo_item input[type="datetime-local"]::-webkit-calendar-picker-indicator{
   font-size: 10px;
@@ -476,5 +469,11 @@ margin-right: 4px;
   justify-content: space-around;
   align-items: center;
   padding: 10px;
+}
+.filters span{
+  font-size: .6rem;
+}
+.controls .clear-btn{
+  font-size: .6rem;
 }
 }
