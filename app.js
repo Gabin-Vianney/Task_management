@@ -171,7 +171,6 @@ function editTask(taskItem) {
   if (taskItem.tagName === "LI") {
     const taskText = taskItem.innerText.split(" - ")[0];
     const taskDatetime = taskItem.getAttribute("data-datetime");
-
     const editTaskForm = document.createElement("div");
     editTaskForm.classList.add("todo_item");
     editTaskForm.innerHTML = `
@@ -276,7 +275,6 @@ function createTask(name, datetime, completed = false) {
   buttonContainer.appendChild(editButton);
   editButton.addEventListener("click", () => {
     editTask(newTodo);
-
   });
   const currentDatetime = new Date();
   if (
